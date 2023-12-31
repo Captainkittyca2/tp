@@ -280,7 +280,7 @@ BOOL dMw_UP_TRIGGER() {
 }
 
 BOOL dMw_DOWN_TRIGGER() {
-    return (bool)mDoCPd_c::getTrigDown(PAD_1);
+    return NULL;
 }
 
 BOOL dMw_LEFT_TRIGGER() {
