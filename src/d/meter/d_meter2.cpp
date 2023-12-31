@@ -5,6 +5,7 @@
 
 #include "d/meter/d_meter2.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/a/d_a_alink.h"
 #include "d/d_demo.h"
 #include "d/d_procname.h"
 #include "d/d_scope.h"
@@ -15,6 +16,7 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/meter/d_meter_map.h"
 #include "dol2asm.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "f_op/f_op_msg_mng.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
@@ -892,7 +894,7 @@ void dMeter2_c::moveLife() {
     alphaAnimeLife();
     dComIfGp_setItemNowLife((u8)mNowLifeGauge);
 }
-
+bool amog = false;
 /* 80220180-8022051C 21AAC0 039C+00 1/1 0/0 0/0 .text            moveKantera__9dMeter2_cFv */
 void dMeter2_c::moveKantera() {
     s32 var_r0;
@@ -902,7 +904,90 @@ void dMeter2_c::moveKantera() {
     s32 max_oil = dComIfGs_getMaxOil();
     var_r7 = 0;
     draw_kantera = false;
+    static int crouch = 0;
+    static fopAc_ac_c* id;
+    static int tiimmer = 0;
+    static int tiiiimer = 0;
+    static int countyer = 0;
+    static int trimer = 0;
+    static int bombytimer = 0;
+    static bool greenLight = false;
+    static bool bomba = false;
+    static bool bamba = false;
 
+    if (amog == true) {
+        if (mDoCPd_c::getHoldLockR(PAD_1) && mDoCPd_c::getHoldL(PAD_1) == 0 && !daAlink_getAlinkActorClass()->i_checkWolf() && daAlink_getAlinkActorClass()->mLinkAcch.ChkGroundHit() != 0 && !daAlink_getAlinkActorClass()->checkFreezeDamage() && !daAlink_getAlinkActorClass()->checkDamageAction()) {
+            if (crouch == 0) {
+                daAlink_getAlinkActorClass()->procCrouchInit();
+                if (daAlink_getAlinkActorClass()->mEquipItem == EQUIP_SWORD) daAlink_getAlinkActorClass()->i_offNoResetFlg2(0x8000000);
+                crouch = 1;
+            }
+        } else if (crouch != 0) {
+            daAlink_getAlinkActorClass()->checkNextActionFromCrouch(0);
+            crouch = 0;
+        }
+        if (sussy != NULL && grabRemember == 264) {
+            if (daAlink_getAlinkActorClass()->mLinkAcch.ChkGroundHit() || daAlink_getAlinkActorClass()->mGrabItemAcKeep.getActor() == NULL) {fopAcM_delete(sussy); grabRemember = 0;}
+        }
+        if (greenLight == true) {
+            tiimmer++;
+            if (tiimmer == 10) {
+                tiimmer = 0;
+                greenLight = false;
+                if (i_fopAcM_SearchByName(PROC_NI) == NULL) {
+                    id = (fopAc_ac_c*)fopAcM_create(PROC_NI, 0, NULL, -1, NULL, NULL, 0xFF);
+                }
+            }
+        }
+        if (i_fopAcM_SearchByName(PROC_NI) == NULL) {
+            if (greenLight == false) {greenLight = true; tiimmer = 0;}
+        }
+        if (cuccoWaitt == true && daAlink_getAlinkActorClass()->mGrabItemAcKeep.getActor() == NULL) {
+            if (daAlink_getAlinkActorClass()->mLinkAcch.ChkGroundHit() == 0) {
+                tiiiimer++;
+                if (tiiiimer >= 15) {
+                    tiiiimer = 0;
+                    cuccoWaitt = false;
+                }
+            } else {cuccoWaitt = false; tiiiimer = 0;}
+        }
+        if (dComIfGs_isItemFirstBit(WEAR_ZORA) && (bomba == false) && mDoCPd_c::getTrigDown(PAD_1) && (countyer <= 2) && !daAlink_getAlinkActorClass()->i_checkWolf()) {
+            bamba = true;
+            countyer += 1;
+        }
+        if (bamba == true) {
+            trimer += 1;
+            if (trimer >= 15) {
+                bamba = false;
+                bomba = true;
+                trimer = 0;
+                bombytimer = 0;
+                mDoAud_seStart(Z2SE_SY_ITEM_SET_X,0,0,0);
+                daAlink_getAlinkActorClass()->setClothesChange(0);
+                if (countyer == 1) {
+                    if (dComIfGs_getSelectEquipClothes() != WEAR_ZORA) {
+                        dComIfGs_setSelectEquipClothes(WEAR_ZORA);
+                    } else {
+                        dComIfGs_setSelectEquipClothes(WEAR_KOKIRI);
+                    }
+                } else if ((countyer == 2) && (dComIfGs_isItemFirstBit(ARMOR))) {
+                    if (dComIfGs_getSelectEquipClothes() != ARMOR) {
+                        dComIfGs_setSelectEquipClothes(ARMOR);
+                    } else {
+                        dComIfGs_setSelectEquipClothes(WEAR_KOKIRI);
+                    }
+                }
+                countyer = 0;
+            }
+        }
+        if (bomba == true) {
+            bombytimer++;
+            if (bombytimer >= 20) {
+                bomba = false;
+                bombytimer = 0;
+            }
+        }
+    }
     if (dComIfGp_getItemMaxOilCount() != 0) {
         var_r7 = dComIfGs_getMaxOil() + dComIfGp_getItemMaxOilCount();
         if (var_r7 > max_oil) {
@@ -2999,8 +3084,10 @@ void dMeter2_c::alphaAnimeLife() {
          (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x08000000) ||
          (mStatus & 0x10000000)))
     {
+        amog = false;
         mpMeterDraw->setAlphaLifeAnimeMin();
     } else {
+        amog = true;
         mpMeterDraw->setAlphaLifeAnimeMax();
         mDoAud_heartGaugeOn();
     }
