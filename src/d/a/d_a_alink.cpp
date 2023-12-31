@@ -27,6 +27,8 @@
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "d/d_bomb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.h"
 #include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
@@ -12530,7 +12532,7 @@ bool daPy_py_c::checkLightMasterSwordEquip() {
 BOOL daPy_py_c::i_checkSwordGet() {
     return dComIfGs_getSelectEquipSword() != NO_ITEM;
 }
-
+bool chickenPlaya = false;
 /* 800A4910-800A4BC8 09F250 02B8+00 5/5 0/0 0/0 .text            setSelectEquipItem__9daAlink_cFi */
 void daAlink_c::setSelectEquipItem(int param_0) {
     if (!i_checkWolf()) {
@@ -14008,9 +14010,9 @@ void daAlink_c::setCollision() {
             }
 
             if (checkHorseRide()) {
-                var_r31->OffTgShieldFrontRange();
-            } else {
                 var_r31->OnTgShieldFrontRange();
+            } else {
+                var_r31->OffTgShieldFrontRange();
             }
 
             var_r31++;
@@ -14187,7 +14189,7 @@ const daAlink_BckData* daAlink_c::getMainBckData(daAlink_c::daAlink_ANM i_anmID)
         }
     }
 
-    if (checkUpperGuardAnime() && i_anmID < 0x14) {
+    if ((checkUpperGuardAnime() && i_anmID < 0x14 && mDoCPd_c::getHoldLockR(PAD_1))) {
         return &m_mainBckShield[i_anmID];
     }
 
@@ -15185,11 +15187,15 @@ BOOL daAlink_c::itemTrigger() {
 }
 
 BOOL daAlink_c::spActionButton() {
-    return itemButtonCheck(BTN_R);
+    if (mDoCPd_c::getHoldLockR(PAD_1))
+        return itemButtonCheck(BTN_B);
+    return false;
 }
 
 BOOL daAlink_c::spActionTrigger() {
-    return itemTriggerCheck(BTN_R);
+    if (mDoCPd_c::getHoldLockR(PAD_1))
+        return itemTriggerCheck(BTN_B);
+    return false;
 }
 
 BOOL daAlink_c::midnaTalkTrigger() const {
@@ -15197,7 +15203,9 @@ BOOL daAlink_c::midnaTalkTrigger() const {
 }
 
 BOOL daAlink_c::swordSwingTrigger() {
-    return itemTriggerCheck(BTN_B);
+    if (mDoCPd_c::getHoldLockR(PAD_1) == 0)
+        return itemTriggerCheck(BTN_B);
+    return false;
 }
 
 /* 800B26DC-800B26FC 0AD01C 0020+00 2/2 0/0 0/0 .text setItemActionButtonStatus__9daAlink_cFUc */
@@ -18359,7 +18367,7 @@ BOOL daAlink_c::setItemModel() {
 
 /* 800BF9F0-800BFD74 0BA330 0384+00 4/4 0/0 0/0 .text            setItemActor__9daAlink_cFv */
 // matches with literals
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 BOOL daAlink_c::setItemActor() {
     if (mEquipItem == BOOMERANG) {
         fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_BOOMERANG, 0, &current.pos, -1,
@@ -18426,17 +18434,23 @@ BOOL daAlink_c::setItemActor() {
         }
 
         cXyz create_pos = (mLeftHandPos + mRightHandPos) * 0.5f;
-        if (checkReadyItem()) {
-            fopAc_ac_c* actor;
+        if (checkReadyItem() && cuccoWaitt == false) {
             if (mEquipItem == NORMAL_BOMB) {
-                actor = dBomb_c::createNormalBombPlayer(&create_pos);
+                if (mLinkAcch.ChkGroundHit() == 0) {
+                    sussy = dBomb_c::createChickenPlayer(&create_pos);
+                    chickenPlaya = true;
+                    cuccoWaitt = true;
+                    grabRemember = 264;
+                    procAutoJumpInit(0);
+                }
+                else if (mLinkAcch.ChkGroundHit()) sussy = dBomb_c::createNormalBombPlayer(&create_pos);
             } else {
-                actor = dBomb_c::createWaterBombPlayer(&create_pos);
+                sussy = dBomb_c::createWaterBombPlayer(&create_pos);
             }
 
-            if (actor != NULL) {
-                mActiveBombNum++;
-                setGrabItemActor(actor);
+            if (sussy != NULL) {
+                if (mEquipItem != NORMAL_BOMB || mLinkAcch.ChkGroundHit()) mActiveBombNum++;
+                setGrabItemActor(sussy);
                 dComIfGp_addSelectItemNum(mSelectItemId, -1);
                 field_0x33e4 = 38.0f;
                 setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
