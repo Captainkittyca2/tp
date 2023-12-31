@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/a/d_a_alink.h"
+#include "d/d_procname.h"
 #include "rel/d/a/d_a_canoe/d_a_canoe.h"
 
 /* 800C2DDC-800C2EAC 0BD71C 00D0+00 17/17 0/0 0/0 .text
@@ -1398,7 +1399,7 @@ public:
 
 /* 800C5E68-800C61EC 0C07A8 0384+00 4/4 0/0 0/0 .text            procAutoJumpInit__9daAlink_cFi */
 // matches with literals
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 int daAlink_c::procAutoJumpInit(int param_0) {
     u32 chk_mode_400 = i_checkModeFlg(0x400);
     BOOL not_front_roll = mProcID != PROC_FRONT_ROLL ? TRUE : FALSE;
@@ -1412,10 +1413,10 @@ int daAlink_c::procAutoJumpInit(int param_0) {
         return procSmallJumpInit(1);
     }
 
-    if (!commonProcInitNotSameProc(PROC_AUTO_JUMP)) {
+    if (!commonProcInitNotSameProc(PROC_AUTO_JUMP) && chickenPlaya == false) {
         return 0;
     }
-
+    if (chickenPlaya == true) chickenPlaya = false;
     mProcVar0.field_0x3008 = 0;
 
     if (chk_mode_400 || (mDemo.getDemoMode() == 0x18 && mDemo.getParam0() == 1)) {
@@ -1660,6 +1661,7 @@ asm int daAlink_c::procAutoJump() {
 
 /* 800C66DC-800C6798 0C101C 00BC+00 1/1 0/0 0/0 .text            procDiveJumpInit__9daAlink_cFv */
 int daAlink_c::procDiveJumpInit() {
+    return 0;
     commonProcInit(PROC_DIVE_JUMP);
     setSingleAnimeParam(ANM_DIVE_START, &daAlinkHIO_autoJump_c0::m.mDiveAnm);
     deleteEquipItem(TRUE, TRUE);
