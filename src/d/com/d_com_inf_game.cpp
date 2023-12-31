@@ -377,6 +377,9 @@ void dComIfG_play_c::ct() {
 static __d_timer_info_c dComIfG_mTimerInfo;
 
 dComIfG_inf_c g_dComIfG_gameInfo;
+fopAc_ac_c* sussy;
+int grabRemember;
+bool cuccoWaitt;
 
 void dComIfG_play_c::init() {
     for (int i = 0; i < 1; i++) {
