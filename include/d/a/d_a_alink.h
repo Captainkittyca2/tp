@@ -3392,7 +3392,7 @@ public:
 
     static u8 m_fEffParamProc[72];
 
-private:
+public:
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
     /* 0x00634 */ char* mArcName;
     /* 0x00638 */ JKRExpHeap* field_0x0638;
