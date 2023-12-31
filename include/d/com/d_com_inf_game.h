@@ -789,6 +789,9 @@ public:
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
+extern fopAc_ac_c* sussy;
+extern int grabRemember;
+extern bool cuccoWaitt;
 extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
