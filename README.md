@@ -17,15 +17,20 @@ A "The Legend of Zelda: Twilight Princess" mod that modifies aspects of Twilight
 ### Crouching
 | Twilight Princess                            | The Wind Waker                            |
 | ----------------------------------- | ----------------------------------- |
-| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+| ![](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/crouchTP.gif) | ![image](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/crouchTWW.gif) |
 ### L-Targeting
 | Twilight Princess                            | The Wind Waker                            |
 | ----------------------------------- | ----------------------------------- |
-| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+| ![](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/LltargetingTP.gif) | ![image](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/LltargetingTWW.gif) |
 ### Deku Leaf
 | Twilight Princess                            | The Wind Waker                            |
 | ----------------------------------- | ----------------------------------- |
-| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+| ![](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/glideTP.gif) | ![image](https://github.com/Captainkittyca2/tp/blob/TWW-Style_Controls/GIFs/glideTWW.gif) |
+### Armors Quick-toggle (ignore meter)
+| Kokiri->Zora                            | Kokiri->Armor                            |
+| ----------------------------------- | ----------------------------------- |
+| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/KokiriToZora.gif) | ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/KokiriToArmor.gif) |
+
 
 # The Legend of Zelda: Twilight Princess <br /> ![Code Progress] ![Dol Progress] ![Rels Progress]
 [Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dcode
