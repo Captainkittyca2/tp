@@ -1,3 +1,32 @@
+# TWW-Style Controls
+A "The Legend of Zelda: Twilight Princess" mod that modifies aspects of Twilight Princess to work more like "The Wind Waker", a GameCube Zelda game.
+
+## Modified/Added features
+
+* Crouching: Hold R button to crouch.
+* L-Targeting: Player doesn't aim his shield automatically when L-Targeting, instead have to hold down R button after L-Targeting to aim shield.
+* Cucco item: Modfiied normal bombs so that Player takes out Cucco when in mid-air and can glide. When in the ground, player will take out bomb.
+* Armors Quick-Toggle returns from [ALBW-Style Meter mod](https://github.com/Captainkittyca2/TP_ALBWStyleMeter)!
+
+## Known Major Issues
+* When using boomerang, player can't lock on multiple places before throwing.
+* If Player takes Cucco out after Link enters screaming state when falling, he can't glide.
+* If player voids out while still holding Cucco item, game might crash.
+
+## Clips
+### Crouching
+| Twilight Princess                            | The Wind Waker                            |
+| ----------------------------------- | ----------------------------------- |
+| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+### L-Targeting
+| Twilight Princess                            | The Wind Waker                            |
+| ----------------------------------- | ----------------------------------- |
+| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+### Deku Leaf
+| Twilight Princess                            | The Wind Waker                            |
+| ----------------------------------- | ----------------------------------- |
+| ![](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowTP.gif) | ![image](https://github.com/Captainkittyca2/TP_ALBWStyleMeter/blob/main/GIFs/BowALBW.gif) |
+
 # The Legend of Zelda: Twilight Princess <br /> ![Code Progress] ![Dol Progress] ![Rels Progress]
 [Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dcode
 [Dol Progress]: https://img.shields.io/endpoint?label=Dol&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Ddol
