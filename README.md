@@ -1,17 +1,20 @@
 # TWW-Style Controls
 A "The Legend of Zelda: Twilight Princess" mod that modifies aspects of Twilight Princess to work more like "The Wind Waker", a GameCube Zelda game.
 
+`Currently supports TP GC US, PAL, and JP, as well as TP Wii US 1.2`
+
 ## Modified/Added features
 
 * Crouching: Hold R button to crouch.
 * L-Targeting: Player doesn't aim his shield automatically when L-Targeting, instead have to hold down R button after L-Targeting to aim shield.
 * Cucco item: Modfiied normal bombs so that Player takes out Cucco when in mid-air and can glide. When in the ground, player will take out bomb.
 * Armors Quick-Toggle returns from [ALBW-Style Meter mod](https://github.com/Captainkittyca2/TP_ALBWStyleMeter)!
+* Shield-Crouching: Hold R button while holding an item/sword to shield-crouch.
 
 ## Known Major Issues
-* When using boomerang, player can't lock on multiple places before throwing.
 * If Player takes Cucco out after Link enters screaming state when falling, he can't glide.
 * If player voids out while still holding Cucco item, game might crash.
+* In some conditions, Link won't be able to press R to interact with things because he will crouch. One possible workaround is L-targeting before interacting with those things (GC issue only)
 
 ## Clips
 ### Crouching
