@@ -1,7 +1,7 @@
 # TWW-Style Controls
 A "The Legend of Zelda: Twilight Princess" mod that modifies aspects of Twilight Princess to work more like "The Wind Waker", a GameCube Zelda game.
 
-`Currently supports TP GC US, PAL, and JP, as well as TP Wii US 1.2`
+`Currently supports most GameCube and Wii versions of Twilight Princess`
 
 ## Modified/Added features
 
